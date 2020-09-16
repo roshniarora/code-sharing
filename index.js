@@ -9,9 +9,9 @@ const io = require('socket.io')(server);
 
 require('dotenv').config();
 
-app.use(cors('http://localhost:3000'));
-const port = 3040;
+const port = process.env.PORT || 3040;
 
+app.use(cors(process.env.PORT || 'http://localhost:3000'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'client/build')));

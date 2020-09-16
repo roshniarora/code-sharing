@@ -1,0 +1,49 @@
+.card-login {
+  font-weight: 400;
+  border: 0;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
+    0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 500px;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  box-shadow: 0 20px 50px rgba(8, 112, 184, 0.7);
+  /* border: 1px solid rgba(0, 0, 0, 0.125); */
+  border-radius: 0.25rem;
+  font-family: Lucida Consol;
+}
+.ant-btn {
+  margin: 0.375rem;
+  color: inherit;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.84rem 2.14rem;
+  width: 50%;
+  border-radius: 50px !important;
+  border: none;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
+  background: linear-gradient(40deg, #45cafc, #303f9f) !important;
+  color: #fff !important;
+}
+
+.ant-btn:hover {
+  color: #fff !important;
+  border: none;
+}
+
+.ant-btn:focus {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}

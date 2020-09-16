@@ -1,0 +1,20 @@
+.main__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.left {
+  border: none;
+  width: 40%;
+  height: 85vh;
+  background-color: rgb(62, 154, 216);
+}
+.right {
+  border: none;
+  width: 60%;
+  height: 85vh;
+  background-color: rgb(65, 105, 121);
+}

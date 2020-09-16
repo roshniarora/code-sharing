@@ -17,13 +17,14 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 //* Handles any requests that don't match the ones above
+app.use('/api/user', routes);
+
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 configureDB();
 app.use(express.json());
-app.use('/', routes);
 
 io.on('connection', (socket) => {
   socket.emit('notification', 'Welcome to code sharing');

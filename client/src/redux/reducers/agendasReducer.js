@@ -1,10 +1,10 @@
-import * as types from '../../constant';
+import * as types from '../constant';
 
 const initialState = {
   agendas: [],
 };
 
-const AgendasReducer = (state = initialState, action) => {
+const agendasReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.GET_AGENDAS:
       return { ...state, agendas: action.payload };
@@ -13,4 +13,4 @@ const AgendasReducer = (state = initialState, action) => {
       return { ...state };
   }
 };
-export default AgendasReducer;
+export default agendasReducer;

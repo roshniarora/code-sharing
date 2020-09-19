@@ -7,6 +7,7 @@ import './login.css';
 import { startLoginUser } from '../../redux/actions/userAction';
 import CardReusableComp from './cardReusableComp';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 const Login = (props) => {
   return (
     <CardReusableComp mainName='Sign in'>
@@ -48,7 +49,10 @@ const Login = (props) => {
               </div>
               <Divider />
               <div className='d-flex justify-content-end pr-4'>
-                <span>Register</span>
+                <div>
+                  Don't have an account?{' '}
+                  <Link to='/users/register'>Sign Up</Link>
+                </div>
               </div>
             </div>
           </Form>

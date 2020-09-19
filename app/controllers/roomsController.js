@@ -75,7 +75,27 @@ module.exports.optShow = (req, res) => {
   Agenda.findOne({ otp: body.otp })
     .populate('rooms')
     .then((response) => {
-      console.log(response, ':::::::::');
+      res.status(200).send(response);
+    })
+    .catch((err) => res.status(403).send(err.message));
+};
+
+module.exports.listAgenda = (req, res) => {
+  const userId = req.user._id;
+  Agenda.find({ userId: { $in: [userId] } })
+    .then((room) => {
+      res.json(room);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
+module.exports.optShowGet = (req, res) => {
+  const otp = req.params;
+  Agenda.findOne(otp)
+    .populate('rooms')
+    .then((response) => {
       res.status(200).send(response);
     })
     .catch((err) => res.status(403).send(err.message));

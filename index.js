@@ -12,24 +12,22 @@ require('dotenv').config();
 const port = process.env.PORT || 3040;
 
 app.use(cors(process.env.PORT || 'http://localhost:3000'));
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.urlencoded({ extended: true }));
+// app.use(express.static(path.join(__dirname, 'client/build')));
 
 //* Handles any requests that don't match the ones above
-app.use('/api/user', routes);
+app.use('/', routes);
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/build/index.html'));
-});
+// app.get('/*', (req, res) => {
+//   res.sendFile(path.join(__dirname + '/client/build/index.html'));
+// });
 
 configureDB();
-app.use(express.json());
-
 io.on('connection', (socket) => {
-  socket.emit('notification', 'Welcome to code sharing');
-  // io.emit('message' , "")
-  socket.on('formValues', (message) => socket.emit('formDataBackend', message));
+  socket.on('Code', function (message) {
+    io.sockets.emit(message.otp, message);
+  });
 });
 
 server.listen(port, () => {

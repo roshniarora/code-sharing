@@ -1,0 +1,15 @@
+.ant-input-disabled {
+  background-color: #fff !important;
+  cursor: default !important;
+  border-bottom: none !important;
+}
+.ant-input {
+  text-align: center;
+}
+.otp {
+  .ant-input-disabled {
+    font-size: 2rem;
+    font-weight: 600;
+    color: black;
+  }
+}

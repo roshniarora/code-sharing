@@ -28,6 +28,10 @@ const agendaSchema = new Schema({
       ref: 'Room',
     },
   ],
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 const Agenda = mongoose.model('Agenda', agendaSchema);
 

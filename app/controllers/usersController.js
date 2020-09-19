@@ -9,19 +9,22 @@ const client = require('twilio')(twilioSid, twilioToken);
 module.exports.register = (req, res) => {
   const body = req.body;
   const user = new User(body);
-
+  console.log(body);
   bcryptjs.genSalt().then((salt) => {
-    bcryptjs.hash(user.password, salt).then((encrypted) => {
-      user.password = encrypted;
-      user
-        .save()
-        .then((user) => {
-          res.json(user);
-        })
-        .catch((err) => {
-          res.json(err);
-        });
-    });
+    bcryptjs
+      .hash(user.password, salt)
+      .then((encrypted) => {
+        user.password = encrypted;
+        user
+          .save()
+          .then((user) => {
+            res.json(user);
+          })
+          .catch((err) => {
+            res.json(err);
+          });
+      })
+      .catch((err) => console.log(err));
   });
 };
 
@@ -30,7 +33,6 @@ module.exports.login = async (req, res) => {
   const user = await User.findOne({ email: body.email });
   if (!user)
     return res.status(500).send({ error: 'invalid Email or password' });
-  console.log(user, ':::::::::::::');
   const password = await bcryptjs.compare(body.password, user.password);
   if (!password)
     return res.status(500).send({ error: 'invalid email or password' });
@@ -43,14 +45,14 @@ module.exports.login = async (req, res) => {
     expiresIn: '2d',
   });
 
-  client.messages
-    .create({
-      to: '+919675790190',
-      from: '+19125742152',
-      body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-    })
-    .then((message) => console.log('Send message asdasd', message))
-    .catch((err) => console.log(err));
+  // client.messages
+  //   .create({
+  //     to: '+919675790190',
+  //     from: '+19125742152',
+  //     body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+  //   })
+  //   .then((message) => console.log('Send message asdasd', message))
+  //   .catch((err) => console.log(err));
 
   res.json({
     token: `Bearer ${token}`,

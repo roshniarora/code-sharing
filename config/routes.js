@@ -11,10 +11,12 @@ router.get('/users/account', authenticateUser, usersController.account);
 
 //room
 router.post('/room', authenticateUser, roomsController.create);
+router.get('/agendas', authenticateUser, roomsController.listAgenda);
 router.post('/roomotp', authenticateUser, roomsController.optShow);
 router.get('/rooms', authenticateUser, roomsController.list);
 router.post('/createAgenda', authenticateUser, roomsController.createAgenda);
 router.get('/room/:id', authenticateUser, roomsController.show);
+router.get('/:otp', roomsController.optShowGet);
 router.get('/showAgenda/:id', authenticateUser, roomsController.showAgenda);
 // router.put('/room/:id', authenticateUser, roomsController.update);
 

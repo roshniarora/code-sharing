@@ -72,13 +72,13 @@ export const startRegisterUser = (values, redirect) => (dispatch) => {
     });
 };
 
-// export const startLogoutUser = () => (dispatch) => {
-//   axios.delete('/users/logout').then((response) => {
-//     if (response.data.notice) {
-//       alert(response.data.notice);
-//       localStorage.removeItem('token');
-//       dispatch(setUser({}));
-//       window.location.href = '/';
-//     }
-//   });
-// };
+export const startLogoutUser = () => (dispatch) => {
+  axios.delete('/users/logout').then((response) => {
+    if (response.data.notice) {
+      alert(response.data.notice);
+      localStorage.removeItem('token');
+      dispatch(setUser({}));
+      window.location.href = '/';
+    }
+  });
+};

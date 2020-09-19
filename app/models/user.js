@@ -33,6 +33,10 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
+  mobile: {
+    type: String,
+    required: true,
+  },
 });
 
 const User = mongoose.model('User', userSchema);

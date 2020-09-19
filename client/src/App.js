@@ -10,7 +10,8 @@ import RoomLogin from './components/rooms/roomLogin';
 import Agendas from './components/rooms/Agendas';
 import Navbar from './layout/navbar';
 import Layout from './layout/layout';
-import AddAgenda from './components/rooms/addAgenda';
+import OtpPage from './components/rooms/otpPage';
+import Room from './components/rooms/room';
 
 function App() {
   const token = localStorage.getItem('token');
@@ -38,8 +39,9 @@ function App() {
             <Route path='/users/register' component={Register} />
             <Route path='/users/roomLogin' component={RoomLogin} />
             <Route path='/users/agendas' component={Agendas} />
-            <Route path='/users/addagendas' component={AddAgenda} />
             <Route path='/room' component={RoomLogin} />
+            <Route path='/otp' component={OtpPage} />
+            <Route path='/:otp' component={Room} />
           </Switch>
         </Layout>
       </div>

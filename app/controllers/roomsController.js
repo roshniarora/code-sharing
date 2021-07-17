@@ -1,13 +1,19 @@
-const Room = require('../models/rooms');
-const otpGenerator = require('otp-generator');
-const Agenda = require('../models/agendas');
+const Room = require("../models/rooms");
+const otpGenerator = require("otp-generator");
+const Agenda = require("../models/agendas");
 
 const otp = () =>
   otpGenerator.generate(6, { upperCase: false, specialChars: false });
 
 module.exports.create = (req, res) => {
+  console.log(req.user._id, req.user);
   const body = req.body;
-  const room = new Room({ ...body, userId: req.user._id, agenda: body.agenda });
+  const room = new Room({
+    ...body,
+    userId: req.user._id,
+    agenda: body.agenda,
+    agendaOtp: body.agendaOtp,
+  });
   room
     .save()
     .then((room) => {
@@ -15,7 +21,9 @@ module.exports.create = (req, res) => {
         room.agenda,
         { $push: { rooms: room._id } },
         { new: true }
-      ).then((res) => {});
+      )
+        .then((res) => {})
+        .catch((err) => console.log(err));
       res.json(room);
     })
     .catch((err) => {
@@ -73,7 +81,7 @@ module.exports.showAgenda = (req, res) => {
 module.exports.optShow = (req, res) => {
   const body = req.body;
   Agenda.findOne({ otp: body.otp })
-    .populate('rooms')
+    .populate("rooms")
     .then((response) => {
       res.status(200).send(response);
     })
@@ -94,7 +102,7 @@ module.exports.listAgenda = (req, res) => {
 module.exports.optShowGet = (req, res) => {
   const otp = req.params;
   Agenda.findOne(otp)
-    .populate('rooms')
+    .populate("rooms")
     .then((response) => {
       res.status(200).send(response);
     })

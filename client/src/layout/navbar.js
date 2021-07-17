@@ -1,51 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, Layout, Button } from 'antd';
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router';
-import { connect } from 'react-redux';
-import './navbar.css';
-
-const { Header } = Layout;
+import React, { useState, useEffect } from "react";
+import { Menu } from "antd";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
+import { connect } from "react-redux";
+import Button from "../components/utilities/Button";
+import "./navbar.css";
 
 const Navbar = (props) => {
   const history = useHistory();
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState("");
   useEffect(() => {
-    setToken(localStorage.getItem('authToken'));
-  }, [token]);
+    setToken(localStorage.getItem("authToken"));
+  }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('authToken');
-    history.push('/users/login');
+    localStorage.removeItem("authToken");
+    history.push("/users/login");
   };
   return (
-    // <Header>
-    <div>
-      {!token && (
-        <Menu mode='horizontal'>
+    <header>
+      <Menu mode="horizontal">
+        <Menu.Item>
+          <Link to="/">Home</Link>
+        </Menu.Item>
+        {!token && (
           <Menu.Item>
-            <Link to='/'>Home</Link>
+            <Link to="/users/register">Register</Link>
           </Menu.Item>
+        )}
+        {!token && (
           <Menu.Item>
-            <Link to='/users/register'>Register</Link>
+            <Link to="/users/login">Login</Link>
           </Menu.Item>
+        )}
+        {!token && (
           <Menu.Item>
-            <Link to='/users/login'>Login</Link>
+            <Link to="/otp">OTP</Link>
           </Menu.Item>
-        </Menu>
-      )}
-      {token && (
-        <Menu mode='horizontal'>
-          {/* <Menu.Item>
-            <Link to='/'>Home</Link>
-          </Menu.Item> */}
-          <Menu.Item className='float-right'>
-            <Button onClick={() => handleLogout()}>Logout</Button>
+        )}
+        {token && (
+          <Menu.Item className="float-right">
+            <Button
+              // buttonStyle="btn-outline"
+              buttonColor="gradient"
+              buttonSize="btn-large"
+              onClick={() => handleLogout()}
+            >
+              Logout
+            </Button>
           </Menu.Item>
-        </Menu>
-      )}
-    </div>
-    // </Header>
+        )}
+      </Menu>
+    </header>
   );
 };
 export default connect()(Navbar);

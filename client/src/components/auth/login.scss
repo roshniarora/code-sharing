@@ -17,19 +17,22 @@
   /* border: 1px solid rgba(0, 0, 0, 0.125); */
   border-radius: 0.25rem;
   font-family: Lucida Consol;
+  padding-left: 2rem;
 }
 .ant-btn {
+  line-height: 0.15 !important;
   margin: 0.375rem;
   color: inherit;
   text-transform: uppercase;
   cursor: pointer;
-  padding: 0.84rem 2.14rem;
+  padding: 5% !important ;
   width: 50%;
   border-radius: 50px !important;
   border: none;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
   background: linear-gradient(40deg, #45cafc, #303f9f) !important;
   color: #fff !important;
+  margin-left: 25% !important;
 }
 
 .ant-btn:hover {
@@ -46,4 +49,20 @@
   -ms-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+.button-main {
+  display: flex;
+  flex-direction: column;
+  // align-content: center;
+  align-items: center;
+}
+
+label {
+  font-weight: 600;
+}
+.btn-sign-in {
+  float: right;
+  cursor: pointer;
+  margin-top: 1rem;
 }

@@ -1,7 +1,7 @@
-import React from 'react';
-import './home.css';
-import Login from '../auth/Login';
-import Agendas from '../rooms/Agendas';
+import React from "react";
+import "./home.css";
+import Login from "../auth/Login";
+import Agendas from "../rooms/Agendas";
 
 const Home = (props) => {
   return (
@@ -25,10 +25,10 @@ const Home = (props) => {
 
     <div>
       <div>
-        <div className='text-center'>
-          <h1 className='mb-4'> Welcome to the code sharing platform</h1>
+        <div className="text-center">
+          <h1 className="mb-4"> Welcome to the code sharing platform</h1>
 
-          <img src='download.png' width='900' height='600'></img>
+          {/* <img src='download.png' width='900' height='600'></img> */}
         </div>
       </div>
     </div>

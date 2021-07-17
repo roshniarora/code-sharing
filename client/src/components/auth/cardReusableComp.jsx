@@ -1,19 +1,19 @@
-import React from 'react'
-import './login.css';
+import React from "react";
+import "./login.scss";
 
 function CardReusableComp(props) {
-    return (
-        <div className='d-flex justify-content-center mt-5'>
-            <div className='card-login'>
-                <div className='p-4'>
-                    <div className='text-center'>
-                        <h2>{props.mainName} </h2>
-                    </div>
-                    {props.children}
-                </div>
-            </div>
+  return (
+    <div className="d-flex justify-content-center mt-5">
+      <div className="card-login">
+        <div className="p-4">
+          <div className="text-center">
+            <h2>{props.mainName} </h2>
+          </div>
+          {props.children}
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
-export default CardReusableComp
+export default CardReusableComp;

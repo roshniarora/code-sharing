@@ -1,56 +1,85 @@
-import React, { useEffect, useState } from 'react';
-import { postRoom } from '../../redux/actions/agendasAction';
-import { connect } from 'react-redux';
-import axios from '../../config/axios';
-import io from 'socket.io-client';
+import React, { useEffect, useState } from "react";
+import { postRoom } from "../../redux/actions/roomAction.js";
+import { showModal } from "../../redux/actions/modalAction";
+import { connect } from "react-redux";
+// import { Formik, Form, Field } from "formik";
+import { Collapse } from "antd";
+import axios from "../../config/axios";
+import io from "socket.io-client";
+// import Button from "../utilities/Button";
+import "codemirror/lib/codemirror.css";
+import "codemirror/theme/material.css";
+import "codemirror/mode/xml/xml";
+import "codemirror/mode/javascript/javascript";
 
-const socket = io('http://localhost:3040');
+import { UnControlled as CodeMirror } from "react-codemirror2";
+
+const { Panel } = Collapse;
+const socket = io("http://localhost:3040");
 
 function Room(props) {
+  const [visibleOTP, setVisibleOTP] = useState(false);
   const [agenda, setAgenda] = useState({});
   const [rooms, setRooms] = useState([]);
 
   socket.connect();
 
-  useEffect(async () => {
-    const otp = window.location.href.split('/');
-    const result = await axios.get(`/${otp[3]}`);
-    setAgenda(result.data);
-    setRooms(result.data.rooms);
-  }, []);
-
-  const handleclick = () => {
-    let value = window.prompt();
-    if (value) {
-      socket.emit('Code', {
-        title: value,
-        description: value,
-        agenda: agenda._id,
-        otp: agenda.otp,
-      });
-      props.postRoom({
-        title: value,
-        description: value,
-        agenda: agenda._id,
-      });
+  const otp = window.location.href.split("/");
+  useEffect(() => {
+    async function dataFetch() {
+      const result = await axios.get(`/${otp[3]}`);
+      console.log(result.data, "sdfds");
+      setAgenda(result.data);
+      setRooms(result.data.rooms);
     }
-  };
+    dataFetch();
+  }, []);
+  localStorage.setItem("otp", agenda?._id);
+  agenda?.otp && console.log(agenda?.otp, "agenda.otp");
   socket.on(agenda.otp, (message) => setRooms([{ ...message }, ...rooms]));
 
+  const handleCancel = (e) => {
+    setVisibleOTP(false);
+  };
+  const otplocal = window.location.href.split("/");
+  const handleAddNote = () => {
+    localStorage.setItem("otp", otplocal[3]);
+    props.showModal({
+      modalType: "ADD_NOTE",
+      modalProps: { show: true },
+    });
+  };
   return (
     <div>
-      <h1>asdlas</h1>
-      <button onClick={handleclick}>alert</button>
+      <button id="addNote" onClick={handleAddNote}>
+        Add Note
+      </button>
+      <div></div>
       <ul>
         {rooms?.map((ele) => (
-          <li>{ele?.title}</li>
+          // <li>{ele?.title}</li>
+          <div className="mt-5">
+            <Collapse accordion>
+              <Panel header={ele.title} key="1">
+                <CodeMirror
+                  value={ele.description}
+                  options={{
+                    mode: "xml",
+                    theme: "material",
+                    lineNumbers: true,
+                  }}
+                />
+              </Panel>
+            </Collapse>
+          </div>
         ))}
-        {/* {dummy.map((ele) => (
-          <li>{ele.title}</li>
-        ))} */}
       </ul>
     </div>
   );
 }
 
-export default connect(null, { postRoom })(Room);
+const mapStateToProps = (state) => ({
+  modal: state.modal,
+});
+
+export default connect(mapStateToProps, { showModal, postRoom })(Room);

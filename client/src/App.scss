@@ -49,6 +49,7 @@
 }
 
 .ant-input {
+  line-height: 3.5715 !important;
   border: none !important;
   border-bottom: 1px solid #ced4da !important;
   color: #495057 !important;
@@ -64,13 +65,22 @@
   line-height: 5 !important;
   color: #495057 !important;
 }
-.ant-input-affix-wrapper:focus {
+/* .ant-input-affix-wrapper:focus {
   border-color: #fff !important;
-  box-shadow: none !important;
+   box-shadow: none !important; 
   outline: none !important;
   -webkit-box-shadow: none !important;
   border-right-width: none !important;
-}
-.ant-input-affix-wrapper:hover {
+}  */
+/* .ant-input-affix-wrapper:hover {
   border-color: #fff !important;
+} */
+.cp {
+  cursor: pointer !important;
+  .ant-input[disabled] {
+    cursor: pointer !important;
+  }
+}
+.ant-modal-close-x {
+  display: none !important;
 }

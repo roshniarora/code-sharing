@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const roomsSchema = new Schema({
   title: {
@@ -11,7 +11,7 @@ const roomsSchema = new Schema({
   },
   userId: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true,
   },
   isAccess: {
@@ -20,9 +20,10 @@ const roomsSchema = new Schema({
   },
   agenda: {
     type: Schema.Types.ObjectId,
-    ref: 'Agenda',
+    ref: "Agenda",
     required: true,
   },
+  agendaOtp: String,
 });
-const Room = mongoose.model('Room', roomsSchema);
+const Room = mongoose.model("Room", roomsSchema);
 module.exports = Room;

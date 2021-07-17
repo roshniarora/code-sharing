@@ -3,13 +3,37 @@
   cursor: default !important;
   border-bottom: none !important;
 }
-.ant-input {
-  text-align: center;
-}
+// .ant-input {
+//   text-align: center;
+// }
 .otp {
   .ant-input-disabled {
     font-size: 2rem;
     font-weight: 600;
     color: black;
   }
+}
+
+.action-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  button {
+    margin-right: 1rem;
+  }
+  button:nth-last-child(1) {
+    margin-right: 0;
+  }
+}
+.add_icon {
+  font-size: 27px;
+  cursor: pointer;
+}
+
+.pageTitle_container {
+  flex: 1;
+}
+.addNote_container {
+  flex: 0;
+  padding-top: 7px;
 }

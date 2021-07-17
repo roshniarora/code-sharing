@@ -1,21 +1,9 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import userReducer from '../reducers/userReducer';
-import agendasReducer from '../reducers/agendasReducer';
-import roomsReducer from '../reducers/roomReducer';
-
-// const configureStore = () => {
-//   const store = createStore(
-//     combineReducers({
-//       user: userReducer,
-//       agandas: agendasReducer,
-//     }),
-//     applyMiddleware(thunk)
-//   );
-//   return store;
-// };
-
-// export default configureStore;
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import userReducer from "../reducers/userReducer";
+import agendasReducer from "../reducers/agendasReducer";
+import roomsReducer from "../reducers/roomReducer";
+import modals from "../reducers/modalReducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -29,6 +17,7 @@ export default function configureStore(initialState) {
       user: userReducer,
       agandas: agendasReducer,
       rooms: roomsReducer,
+      modal: modals,
     }),
     initialState
   );
